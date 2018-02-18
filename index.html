@@ -1,0 +1,110 @@
+<html lang="en" >
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #nav{
+                width: 100%;
+                height: 50px;
+                background-color: #1a1a1a;
+                margin: 0;
+            }
+            #menu{
+                height: 100%;
+                width: 20%;
+                float: left;
+                background-color: #333333;
+
+            }
+            #content{
+                width: 80%;
+                height: 100%;
+                float: left;
+                background-color: #999999;
+                margin: 0;
+            }
+            #map{
+                width: 98%;
+                height: 90%;
+                margin: 1%;
+                background-color: white;
+            }
+            #selected{
+                width: 90%;
+                height: 5%;
+                margin-left: 5%;
+                margin-top: 5%;
+                background-color: #999999;
+                color: black;
+            }
+            #MenuIcon{
+                cursor: pointer;
+                width: 35px;
+                padding-left: 0.5%;
+                padding-top: 0.5%;
+            }
+            #line{       
+                width: 35px;
+                height: 5px;
+                background-color: white;
+                margin: 6px 0;
+            }
+            select option{
+                overflow-x: scroll;
+            }
+
+            @media screen and (max-width: 500px){
+                #content{
+                    width: 80%;
+                }
+                #menu{
+                    left: -350px;
+                }
+                #selected {
+                    height: 3%;
+                    overflow-x: scroll;
+                    overflow-y: scroll;
+                    font-size: 5px;
+                }
+            } 
+        </style>
+    </head>
+    <body>
+        <div id="menu" >
+                <select id="selected" data-bind="foreach: list"  >    
+                    <option data-bind="text: $data" ></option>
+                </select>
+        </div>        
+        <div id="content">
+            <div id="nav">
+                <div id="MenuIcon">
+                    <div id="line"></div>
+                    <div id="line"></div>
+                    <div id="line"></div>
+                </div>
+            </div>
+            <div id="map">    
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script>
+        $('#MenuIcon').on('click', function(){
+            if($('#menu').css("left") == '-350px'){
+                    $('#menu').css("left", 0);
+                    $('#content').css("width", "80%");
+                    $('#content').css("float", "right");
+
+            }else{
+                    $('#menu').css("left", -350);
+                    $('#menu').css("position","absolute");
+                    $('#content').css("width", "100%");
+               }
+        });
+        
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+        <script src="js/app.js" ></script>
+        <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtZ5e6uhKrfiLot5osXbE2WpPGZOn06U8&v=3&callback=initMap">
+        </script>
+    </body>
+</html>
