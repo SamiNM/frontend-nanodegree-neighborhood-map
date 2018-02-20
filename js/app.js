@@ -54,7 +54,7 @@ function initMap() {
     function populateInfo(){
         return function(){
             populateInfoWindow( this , largeInfowindow);
-        }
+        };
     }
 
     function populateInfoWindow(marker, infowindow){ 
