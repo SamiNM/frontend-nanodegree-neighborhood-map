@@ -46,15 +46,17 @@ function initMap() {
             animation: google.maps.Animation.DROP
         });
         bounds.extend(marker.position);
-        marker.addListener('click', function(){
-            return populateInfoWindow(this , largeInfowindow);
-        });        
+        marker.addListener('click', populateInfo.call(marker) );
         markers.push(marker);
-        
     }
-    
     map.fitBounds(bounds);
     
+    function populateInfo(){
+        return function(){
+            populateInfoWindow( this , largeInfowindow);
+        }
+    }
+
     function populateInfoWindow(marker, infowindow){ 
         if(infowindow.marker != marker){
             // set timeout to marker bounce animation for 3 second 
