@@ -83,8 +83,6 @@ var callInfo = function(title,infowindow){
     $.ajax(wikiUrl,{
         dataType: 'jsonp',
         success: function( response ){
-            var article = response[1];
-            
             infowindow.setContent('<div class="info"><a target="_blank" href="http://en.wikipedia.org/wiki/'+ title +'">' +title+ '</a></div>');
         },
         error: function(){
@@ -96,7 +94,6 @@ var callInfo = function(title,infowindow){
 
 // filtering markers on the map 
 var viewModel = function() {
-    var self = this;
     var select = document.getElementById('selected');
     
     select.addEventListener('change',function(){
