@@ -1,0 +1,65 @@
+#nav{
+    width: 100%;
+    height: 50px;
+    background-color: #1a1a1a;
+    margin: 0;
+}
+#menu{
+    height: 100%;
+    width: 20%;
+    float: left;
+    background-color: #333333;
+
+}
+#content{
+    width: 80%;
+    height: 100%;
+    float: left;
+    background-color: #999999;
+    margin: 0;
+}
+#map{
+    width: 98%;
+    height: 90%;
+    margin: 1%;
+    background-color: white;
+}
+#selected{
+    width: 90%;
+    height: 5%;
+    margin-left: 5%;
+    margin-top: 5%;
+    background-color: #999999;
+    color: black;
+}
+#MenuIcon{
+    cursor: pointer;
+    width: 35px;
+    padding-left: 0.5%;
+    padding-top: 0.5%;
+}
+#line{       
+    width: 35px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+}
+select option{
+    overflow-x: scroll;
+}
+
+@media screen and (max-width: 500px){
+    #content{
+        width: 80%;
+    }
+    #menu{
+        left: -500px;
+        position: absolute;
+    }
+    #selected {
+        height: 3%;
+        overflow-x: scroll;
+        overflow-y: scroll;
+        font-size: 5px;
+    }
+} 
