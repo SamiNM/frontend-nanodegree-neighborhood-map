@@ -17,7 +17,7 @@ var Model = function(){
            {title:'Princess Nora bint Abdul Rahman University',   location: {lat: 24.8464875 , lng: 46.7247677 }}
     ]);
 
-}
+};
 // Copying all the titles of the locations in observableArray called list to show it in the drop down list
 var model = new Model();
 for(var i=0; i <  model.locations().length; i++){
@@ -46,9 +46,7 @@ function initMap() {
             animation: google.maps.Animation.DROP
         });
         bounds.extend(marker.position);
-        marker.addListener('click', function(){   
-           populateInfoWindow(this , largeInfowindow);   
-        });
+        marker.addListener('click', populateInfoWindow(this , largeInfowindow));
         markers.push(marker);
         
     }
@@ -90,7 +88,7 @@ var callInfo = function(title,infowindow){
         }
     });
     
-}
+};
 
 // filtering markers on the map 
 var viewModel = function() {
@@ -105,13 +103,13 @@ var viewModel = function() {
                 
             }
         }else{
-            for( i=0; i < markers.length ;i++ ){
-                bounds.extend(markers[i].position);
-                if(markers[i].title != select.value ){
-                    markers[i].setMap(null);
+            for(var j=0; j < markers.length ;j++ ){
+                bounds.extend(markers[j].position);
+                if(markers[j].title != select.value ){
+                    markers[j].setMap(null);
                 }else{
-                    markers[i].setAnimation(google.maps.Animation.DROP);
-                    markers[i].setMap(map);
+                    markers[j].setAnimation(google.maps.Animation.DROP);
+                    markers[j].setMap(map);
                 }
             }    
         }
@@ -121,6 +119,6 @@ var viewModel = function() {
     
 
 
-}
+};
 ko.applyBindings(new viewModel());
 
