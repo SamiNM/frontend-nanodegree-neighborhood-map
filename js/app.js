@@ -46,7 +46,9 @@ function initMap() {
             animation: google.maps.Animation.DROP
         });
         bounds.extend(marker.position);
-        marker.addListener('click', populateInfoWindow(this , largeInfowindow));
+        marker.addListener('click', function(){
+            return populateInfoWindow(this , largeInfowindow);
+        });        
         markers.push(marker);
         
     }
