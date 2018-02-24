@@ -6,8 +6,7 @@
     </head>
     <body>
         <div id="menu" >
-                <select id="selected" data-bind="foreach: list"  >    
-                    <option data-bind="text: $data" ></option>
+                <select id="selected" data-bind="options: list, selectedOptions: selectedItem"  >    
                 </select>
         </div>        
         <div id="content">
@@ -35,11 +34,13 @@
                     $('#content').css("width", "100%");
                }
         });
-        
+        function gMapErrorHandler(){
+            alert("Oops.. Can't load Google Map");
+        }
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
         <script src="js/app.js" ></script>
-        <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtZ5e6uhKrfiLot5osXbE2WpPGZOn06U8&v=3&callback=initMap">
+        <script onerror="gMapErrorHandler()" async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtZ5e6uhKrfiLot5osXbE2WpPGZOn06U8&v=3&callback=initMap">
         </script>
     </body>
 </html>
