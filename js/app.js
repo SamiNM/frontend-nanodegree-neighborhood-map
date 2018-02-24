@@ -1,6 +1,6 @@
 var map;
 var markers = [];
-var list = ko.observableArray(['Select All']);
+
 var bounds;
 var Model = function(){
     // All the locations and its title are located here in this object
@@ -19,11 +19,7 @@ var Model = function(){
 
 };
 // Copying all the titles of the locations in observableArray called list to show it in the drop down list
-var model = new Model();
-for(var i=0; i <  model.locations().length; i++){
-    var title = model.locations()[i].title;
-    list.push(title);
-} 
+
 
 // inital function to initialize the google map and setting default markers
 function initMap() {
@@ -63,7 +59,7 @@ function initMap() {
             marker.setAnimation(google.maps.Animation.BOUNCE);
             setTimeout(function(){ 
                 marker.setAnimation(null);                
-            }, 3000);
+            }, 2800);
             infowindow.marker = marker;
             callInfo(marker.title,infowindow);
             infowindow.open(map,marker);
@@ -82,44 +78,46 @@ var callInfo = function(title,infowindow){
     
     $.ajax(wikiUrl,{
         dataType: 'jsonp',
-        success: function( response ){
+    }).done(function( response ){
             infowindow.setContent('<div class="info"><a target="_blank" href="http://en.wikipedia.org/wiki/'+ title +'">' +title+ '</a></div>');
-        },
-        error: function(){
-            alert("Can't load matched article");
-        }
+    }).fail(function() {
+        alert("Can't load matched article");
     });
     
 };
 
 // filtering markers on the map 
-var viewModel = function() {
+var ViewModel = function() {
     var select = document.getElementById('selected');
+    this.selectedItem = ko.observable("");
+    this.list = ko.observableArray(['Select All']);
+    var model = new Model();
+    for(var i=0, len = model.locations().length; i < len ; i++){
+        var title = model.locations()[i].title;
+        this.list.push(title);
+    } 
     
-    select.addEventListener('change',function(){
-        if( 'Select All' === select.value){
-            for(var i=0; i < markers.length ;i++ ){
-                markers[i].setAnimation(google.maps.Animation.DROP);
-                markers[i].setMap(map);
-                
-            }
-        }else{
-            for(var j=0; j < markers.length ;j++ ){
-                bounds.extend(markers[j].position);
-                if(markers[j].title != select.value ){
-                    markers[j].setMap(null);
-                }else{
-                    markers[j].setAnimation(google.maps.Animation.DROP);
-                    markers[j].setMap(map);
+    this.selectedItem.subscribe(function(newValue){
+        if(newValue[0] === 'Select All'){
+                for(var i=0; i < markers.length ;i++ ){
+                    markers[i].setAnimation(google.maps.Animation.DROP);
+                    markers[i].setMap(map);
                 }
-            }    
-        }
+           }
+        else{
+               for(var j=0; j < markers.length ;j++ ){
+                    bounds.extend(markers[j].position);
+                    if(markers[j].title != newValue[0] ){
+                        markers[j].setMap(null);
+                    }
+                   else{
+                        markers[j].setAnimation(google.maps.Animation.DROP);
+                        markers[j].setMap(map);
+                    }
+                }
+           }
         map.fitBounds(bounds);
+        console.log(newValue[0] );
     });
-    
-    
-
-
 };
-ko.applyBindings(new viewModel());
-
+ko.applyBindings(new ViewModel());
