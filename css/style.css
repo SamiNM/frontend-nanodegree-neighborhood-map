@@ -50,7 +50,7 @@ select option{
 
 @media screen and (max-width: 500px){
     #content{
-        width: 80%;
+        width: 100%;
     }
     #menu{
         left: -500px;
