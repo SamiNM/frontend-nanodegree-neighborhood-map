@@ -7,6 +7,11 @@ To be clear this project is built *from scratch* by me(SamiNM) after following t
 ## Neighborhood Map
 Neighborhood map is a Webpage that shows some of landmarks of Riyadh, the capital city of Kingdom of Saudi Arabia and gives links to wikipedia pages that are corresponding to the landmarks for more info.
 
+## To Run The Application
+- First, you have to have a Google Api Key. 
+- Since the app depends on google map you should include the api. 
+- Second, you have to incude JQuery and Knockout.js libraries.
+
 ### The List of The Landmarks used in the project
 - [**Jenadriyah**](https://en.wikipedia.org/wiki/Jenadriyah).
 - [**King Abdul Aziz Historical Centre**](https://en.wikipedia.org/wiki/King_Abdul_Aziz_Historical_Centre).
