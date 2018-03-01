@@ -8,7 +8,7 @@ To be clear this project is built *from scratch* by me(SamiNM) after following t
 Neighborhood map is a Webpage that shows some of landmarks of Riyadh, the capital city of Kingdom of Saudi Arabia and gives links to wikipedia pages that are corresponding to the landmarks for more info.
 
 ## To Run The Application
-- First, you have to have a Google Api Key. 
+- First, you have to have a Google API Key. 
 - Since the app depends on google map you should include the api. 
 - Second, you have to incude JQuery and Knockout.js libraries.
 
